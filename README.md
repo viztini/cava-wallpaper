@@ -72,7 +72,7 @@ Bug reports, issues and pull requests are welcome. If you'd like me to open a PR
 
 ## License
 
-Add your project's license here or include a LICENSE file in the repository.
+MIT Liscense
 
 ## Acknowledgements
 
