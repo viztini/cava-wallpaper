@@ -1,6 +1,6 @@
 # cava-wallpaper
 
-A simple installer and launcher for https://github.com/rs-pro0/wallpaper-cava — a real-time music visualizer that renders system audio as a live wallpaper using CAVA and Rust.
+A simple installer and launcher for [wallpaper-cava](https://github.com/rs-pro0/wallpaper-cava) — a real-time music visualizer that renders system audio as a live wallpaper using CAVA and Rust.
 
 This repository makes it easy to install and use `wallpaper-cava` globally as the `cava-wallpaper` command.
 
@@ -8,12 +8,12 @@ This repository makes it easy to install and use `wallpaper-cava` globally as th
 
 ## Requirements
 
-- Git
-- A Unix-like environment (Linux)
-- ALSA/PulseAudio or another audio backend supported by CAVA
-- Optional: Rust toolchain or build tools if you want to build from source
+- **Git** - for cloning repositories
+- **Rust toolchain** - `cargo` is required to build and install
+- **Linux** with Wayland compositor support
+- **ALSA/PulseAudio** or another audio backend supported by CAVA
 
-See the installer script for exact dependency and platform details.
+Install Rust from [rustup.rs](https://rustup.rs/) if you don't have it already.
 
 ## Installation
 
@@ -22,11 +22,16 @@ Clone this repository and run the installer:
 ```bash
 git clone https://github.com/viztini/cava-wallpaper.git
 cd cava-wallpaper
-chmod +x install.sh
 ./install.sh
 ```
 
-The installer will install or make `cava-wallpaper` available system-wide. Review `install.sh` for what it will do and any prompts it shows.
+The installer will:
+1. Clone the upstream `wallpaper-cava` repository to `~/cava-wallpaper-src`
+2. Build and install the binary as `cava-wallpaper` using `cargo install`
+3. Copy the config file to `~/.config/cava-wallpaper/config.toml`
+4. Add `~/.cargo/bin` to your PATH if needed
+
+After installation, you may need to restart your shell or run `source ~/.bashrc`.
 
 ## Usage
 
@@ -46,34 +51,50 @@ Refer to the upstream `wallpaper-cava` project for configuration options and pla
 
 ## Configuration
 
-- CAVA configuration is typically located at `~/.config/cava/config` — adjust it for your audio source and visual preferences.
-- `wallpaper-cava` handles setting the wallpaper; compositor and desktop environment behavior may vary (X11 vs Wayland).
+Configuration file is located at `~/.config/cava-wallpaper/config.toml`. Edit this file to customize:
+- Audio source and device
+- Visual appearance and colors
+- Bar settings and behavior
+
+You can also pass a custom config path:
+```bash
+cava-wallpaper --config /path/to/your/config.toml
+```
+
+**Note:** CAVA configuration at `~/.config/cava/config` is separate and may affect audio input behavior.
 
 ## Uninstall
 
-Remove the installed binary and any installed files (adjust paths according to your system and what `install.sh` did):
+To completely remove cava-wallpaper:
 
 ```bash
-sudo rm /usr/local/bin/cava-wallpaper
-# remove other files if the installer placed them elsewhere
-```
+# Remove the installed binary
+cargo uninstall wallpaper-cava
 
-Inspect `install.sh` for exact installed paths and reverse those steps to fully uninstall.
+# Remove source directory
+rm -rf ~/cava-wallpaper-src
+
+# Remove config directory
+rm -rf ~/.config/cava-wallpaper
+```
 
 ## Troubleshooting
 
-- If you don't see the visualizer, confirm CAVA works standalone and that audio capture is functional.
-- Run `cava-wallpaper` from a terminal to view stderr/stdout for errors.
-- If installation fails due to permissions, re-run the installer with appropriate privileges or move files manually.
+- **Visualizer not appearing?** Ensure your compositor supports the wlr-layer-shell protocol (most Wayland compositors do)
+- **No audio visualization?** Check that audio is playing and CAVA can capture it. Test with standalone CAVA first.
+- **Command not found?** Make sure `~/.cargo/bin` is in your PATH. Run `source ~/.bashrc` or restart your terminal.
+- **Build errors?** Ensure you have the latest Rust toolchain: `rustup update`
+
+For detailed errors, run `cava-wallpaper` from a terminal to see output.
 
 ## Contributing
 
-Bug reports, issues and pull requests are welcome. If you'd like me to open a PR with further README edits, tell me what to include.
+Bug reports, issues, and pull requests are welcome!
 
 ## License
 
-MIT Liscense
+MIT License
 
 ## Acknowledgements
 
-- Upstream: https://github.com/rs-pro0/wallpaper-cava
+- Upstream project: [rs-pro0/wallpaper-cava](https://github.com/rs-pro0/wallpaper-cava)
