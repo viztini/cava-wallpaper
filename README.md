@@ -85,6 +85,27 @@ rm -rf ~/.config/cava-wallpaper
 - **Command not found?** Make sure `~/.cargo/bin` is in your PATH. Run `source ~/.bashrc` or restart your terminal.
 - **Build errors?** Ensure you have the latest Rust toolchain: `rustup update`
 
+**Old version of `cava-wallpaper` is being used**
+
+If you have a previous installation of `cava-wallpaper` in a system directory like `/usr/local/bin`, it might take precedence over the new binary installed by the `install.sh` script.
+
+You can check where the `cava-wallpaper` command is coming from by running:
+```
+which cava-wallpaper
+```
+
+If the output is not `/home/your-user/.cargo/bin/cava-wallpaper`, you have an old version installed.
+
+To fix this, you need to remove the old binary. For example, if the binary is at `/usr/local/bin/cava-wallpaper`, you can remove it by running:
+```
+sudo rm /usr/local/bin/cava-wallpaper
+```
+
+After removing the old binary, you should also make sure that your `PATH` is set up correctly by running:
+```
+source ~/.bashrc
+```
+
 For detailed errors, run `cava-wallpaper` from a terminal to see output.
 
 ## Contributing

@@ -47,7 +47,7 @@ const VERTEX_SHADER_SRC: &str = include_str!("shaders/vertex_shader.glsl");
 const FRAGMENT_SHADER_SRC: &str = include_str!("shaders/fragment_shader.glsl");
 
 fn main() {
-    let mut config_filename: String;
+    let config_filename: String;
     let args: Vec<String> = env::args().collect();
     if args.len() == 3 {
         if args[1] != "--config" {
@@ -72,7 +72,7 @@ fn main() {
         ("raw_target".into(), "/dev/stdout".into()),
         ("bit_format".into(), "16bit".into()),
     ]);
-    let config_str = fs::read_to_string(&config_filename).expect("Unable to read config file");
+    let config_str = fs::read_to_string(config_filename).expect("Unable to read config file");
     let config: Config = match toml::from_str(&config_str) {
         Ok(config) => config,
         Err(error) => panic!("Error parsing config: {}", error.message()),
