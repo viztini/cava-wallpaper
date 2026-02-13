@@ -8,7 +8,7 @@ This repository makes it easy to install and use `wallpaper-cava` globally as th
 
 ## Requirements
 
-- **Git** - for cloning repositories
+- **git** - for cloning repositories
 - **Rust toolchain** - `cargo` is required to build and install
 - **Linux** with Wayland compositor support
 - **ALSA/PulseAudio** or another audio backend supported by CAVA
