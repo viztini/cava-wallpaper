@@ -1,6 +1,6 @@
 # cava-wallpaper
 
-A simple installer and launcher for [wallpaper-cava](https://github.com/rs-pro0/wallpaper-cava) — a real-time music visualizer that renders system audio as a live wallpaper using CAVA and Rust.
+A simple installer and launcher for [wallpaper-cava](https://github.com/rs-pro0/wallpaper-cava) - a real-time music visualizer that renders system audio as a live wallpaper using CAVA and Rust.
 
 This repository makes it easy to install and use `wallpaper-cava` globally as the `cava-wallpaper` command.
 
